@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+  <xs:element name="cnn">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" ref="region"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="region">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" ref="news"/>
+      </xs:sequence>
+      <xs:attribute name="name" use="required" type="xs:string"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="news">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="title"/>
+        <xs:element ref="url"/>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="highlights"/>
+        <xs:element ref="date"/>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="author"/>
+        <xs:element ref="text"/>
+        <xs:element minOccurs="0" maxOccurs="1" ref="photoURL"/>
+        <xs:element minOccurs="0" maxOccurs="1" ref="videoURL"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="title" type="xs:string"/>
+  <xs:element name="url" type="xs:anyURI"/>
+  <xs:element name="highlights" type="xs:string"/>
+  <xs:element name="date">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="day"/>
+        <xs:element ref="month"/>
+        <xs:element ref="year"/>
+        <xs:element ref="hour"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="day">
+  	<xs:simpleType>
+  		<xs:restriction base="xs:integer">
+  			<xs:minInclusive value="1"/>
+  			<xs:maxInclusive value="31"/>
+  		</xs:restriction>
+  	</xs:simpleType>
+  </xs:element>
+  <xs:element name="month">
+  	<xs:simpleType>
+  		<xs:restriction base="xs:integer">
+  			<xs:minInclusive value="1"/>
+  			<xs:maxInclusive value="12"/>
+  		</xs:restriction>
+  	</xs:simpleType>
+  </xs:element>
+  <xs:element name="year">
+	<xs:simpleType>
+  		<xs:restriction base="xs:integer">
+  			<xs:minInclusive value="2013"/>
+  		</xs:restriction>
+  	</xs:simpleType>
+  </xs:element>
+  <xs:element name="hour">
+  	<xs:simpleType>
+  		<xs:restriction base="xs:integer">
+  			<xs:minInclusive value="0000"/>
+  			<xs:maxInclusive value="2359"/>
+  		</xs:restriction>
+  	</xs:simpleType>
+  </xs:element>
+  <xs:element name="author" type="xs:string"/>
+  <xs:element name="text" type="xs:string"/>
+  <xs:element name="photoURL" type="xs:anyURI"/>
+  <xs:element name="videoURL" type="xs:anyURI"/>
+</xs:schema>
